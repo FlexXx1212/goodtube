@@ -2119,18 +2119,6 @@
 		}
 	}
 
-	function getRate() {
-		if(sessionStorage.getItem("lastPlaybackRate") != null) {
-			return JSON.parse(sessionStorage.getItem("lastPlaybackRate"));
-		} else {
-			return -1;
-		}
-	}
-
-	function setRate(rate) {
-		sessionStorage.setItem("lastPlaybackRate", JSON.stringify(rate));
-	}
-
 	// Receive a message from the parent window
 	function goodTube_iframe_receiveMessage(event) {
 		// Make sure some data exists
@@ -2215,10 +2203,6 @@
 				return;
 			}
 
-			if(getRate() == -1) {
-				setRate(video.playbackRate);
-			}
-
 			// Speed up playback
 			if (keyPressed === '>' || keyPressed === 'd_shift') {
 				player.playbackRate = player.playbackRate + 0.25;
@@ -2233,31 +2217,6 @@
 			else if (keyPressed === 's_shift') {
 				player.playbackRate = 1.0;
 			}
-
-			var b = document.getElementsByClassName("ytp-bezel-text");
-			if(b != null && b.length > 0) {
-				b[0].innerText = video.playbackRate + "x";
-			}
-			setRate(video.playbackRate);
-			var wrapper = document.getElementById('showSpeedWrapper');
-			if (wrapper) {
-				wrapper.remove();
-			}
-
-			let bezelWrapper = document.createElement('div');
-			bezelWrapper.id = "showSpeedWrapper";
-			bezelWrapper.className = 'ytp-bezel-text-wrapper';
-
-			// Create the inner div with class 'ytp-bezel-text'
-			let bezelText = document.createElement('div');
-			bezelText.className = 'ytp-bezel-text';
-			bezelText.textContent = getRate() + 'x'; // Set the inner text
-
-			// Append the inner div to the outer div
-			bezelWrapper.appendChild(bezelText);
-
-			video.parentElement.prepend(bezelWrapper);
-			setTimeout(function(){bezelWrapper.remove();}, 500)
 
 			// If we're not holding down the shift key
 			if (!event.shiftKey) {
