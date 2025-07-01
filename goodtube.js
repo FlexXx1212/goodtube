@@ -582,6 +582,7 @@
 	// Add keyboard shortcuts
 	function goodTube_shortcuts_init() {
 		document.addEventListener('keydown', function (event) {
+			console.log(event.shiftKey);
 			// Don't do anything if we're holding control
 			if (event.ctrlKey) {
 				return;
@@ -2091,7 +2092,6 @@
 
 	// Receive a message from the parent window
 	function goodTube_iframe_receiveMessage(event) {
-		console.log(event.shiftKey);
 		// Make sure some data exists
 		if (typeof event.data !== 'string') {
 			return;
