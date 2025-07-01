@@ -2219,7 +2219,7 @@
 			// Set speed back to normal
 			else if (keyPressed === 's_shift') {
 				if (goodTube_iframe_api && typeof goodTube_iframe_api.getPlaybackRate === 'function' && typeof goodTube_iframe_api.setPlaybackRate === 'function') {	
-					goodTube_iframe_api.setPlaybackRate(1);
+					player.playbackRate = 1.0;
 				}
 			}
 
