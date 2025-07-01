@@ -717,16 +717,18 @@
 					}
 
 					if (
-						// Speed up playback
-						keyPressed === 'a' ||
 						// Slow down playback
-						keyPressed === 'd'
+						keyPressed === 'a' ||
+						// Speed up playback
+						keyPressed === 'd' ||
+						// Normal playback speed
+						keyPressed === 's'
 					) {
 						event.preventDefault();
 						event.stopImmediatePropagation();
 
 						// Pass the keyboard shortcut to the iframe
-						goodTube_player.contentWindow.postMessage('goodTube_shortcut_' + keyPressed, '*');
+						goodTube_player.contentWindow.postMessage('goodTube_shortcut_' + keyPressed + '_shift', '*');
 
 						// Force mouse move to make sure fullscreen hides
 						var event = new Event('mousemove');
@@ -2195,14 +2197,13 @@
 		else if (event.data.indexOf('goodTube_shortcut_') !== -1) {
 			// Get the key pressed
 			let keyPressed = event.data.replace('goodTube_shortcut_', '');
-			alert('Key pressed: ' + keyPressed + ' | Shift: ' + event.shiftKey);
 			// Target the player
 			let player = document.querySelector('video');
 			if (!player) {
 				return;
 			}
 			// Speed up playback
-			else if (keyPressed === '>' || (event.shiftKey && keyPressed === 'd')) {
+			else if (keyPressed === '>' || keyPressed === 'd_shift') {
 				if (goodTube_iframe_api && typeof goodTube_iframe_api.getPlaybackRate === 'function' && typeof goodTube_iframe_api.setPlaybackRate === 'function') {
 					let playbackRate = goodTube_iframe_api.getPlaybackRate();
 					goodTube_iframe_api.setPlaybackRate(playbackRate + 0.25);
@@ -2210,7 +2211,7 @@
 			}
 
 			// Slow down playback
-			else if (keyPressed === '<' || (event.shiftKey && keyPressed === 'a')) {
+			else if (keyPressed === '<' || keyPressed === 'a_shift') {
 				if (goodTube_iframe_api && typeof goodTube_iframe_api.getPlaybackRate === 'function' && typeof goodTube_iframe_api.setPlaybackRate === 'function') {
 					let playbackRate = goodTube_iframe_api.getPlaybackRate();
 					goodTube_iframe_api.setPlaybackRate(Math.max(playbackRate - 0.25, 0.25));
@@ -2218,7 +2219,7 @@
 			}
 
 			// Set speed back to normal
-			else if (event.shiftKey && keyPressed === 's') {
+			else if (keyPressed === 's_shift') {
 				if (goodTube_iframe_api && typeof goodTube_iframe_api.getPlaybackRate === 'function' && typeof goodTube_iframe_api.setPlaybackRate === 'function') {	
 					goodTube_iframe_api.setPlaybackRate(1);
 				}
