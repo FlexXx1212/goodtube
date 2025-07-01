@@ -2205,16 +2205,14 @@
 			// Speed up playback
 			else if (keyPressed === '>' || keyPressed === 'd_shift') {
 				if (goodTube_iframe_api && typeof goodTube_iframe_api.getPlaybackRate === 'function' && typeof goodTube_iframe_api.setPlaybackRate === 'function') {
-					let playbackRate = goodTube_iframe_api.getPlaybackRate();
-					player.playbackRate = playbackRate + 0.25;
+					player.playbackRate = player.playbackRate + 0.25;
 				}
 			}
 
 			// Slow down playback
 			else if (keyPressed === '<' || keyPressed === 'a_shift') {
 				if (goodTube_iframe_api && typeof goodTube_iframe_api.getPlaybackRate === 'function' && typeof goodTube_iframe_api.setPlaybackRate === 'function') {
-					let playbackRate = goodTube_iframe_api.getPlaybackRate();
-					player.playbackRate = Math.max(playbackRate - 0.25, 0.25);
+					player.playbackRate = Math.max(player.playbackRate - 0.25, 0.25);
 				}
 			}
 
