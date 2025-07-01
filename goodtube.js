@@ -2175,60 +2175,25 @@
 			}
 
 			// Speed up playback
-			else if (keyPressed === '>') {
+			else if (keyPressed === '>' || (event.shiftKey && keyPressed === 'd')) {
 				if (goodTube_iframe_api && typeof goodTube_iframe_api.getPlaybackRate === 'function' && typeof goodTube_iframe_api.setPlaybackRate === 'function') {
 					let playbackRate = goodTube_iframe_api.getPlaybackRate();
-
-					if (playbackRate == .25) {
-						goodTube_iframe_api.setPlaybackRate(.5);
-					}
-					else if (playbackRate == .5) {
-						goodTube_iframe_api.setPlaybackRate(.75);
-					}
-					else if (playbackRate == .75) {
-						goodTube_iframe_api.setPlaybackRate(1);
-					}
-					else if (playbackRate == 1) {
-						goodTube_iframe_api.setPlaybackRate(1.25);
-					}
-					else if (playbackRate == 1.25) {
-						goodTube_iframe_api.setPlaybackRate(1.5);
-					}
-					else if (playbackRate == 1.5) {
-						goodTube_iframe_api.setPlaybackRate(1.75);
-					}
-					else if (playbackRate == 1.75) {
-						goodTube_iframe_api.setPlaybackRate(2);
-					}
+					goodTube_iframe_api.setPlaybackRate(playbackRate + 0.25);
 				}
 			}
 
 			// Slow down playback
-			else if (keyPressed === '<') {
+			else if (keyPressed === '<' || (event.shiftKey && keyPressed === 'a')) {
 				if (goodTube_iframe_api && typeof goodTube_iframe_api.getPlaybackRate === 'function' && typeof goodTube_iframe_api.setPlaybackRate === 'function') {
 					let playbackRate = goodTube_iframe_api.getPlaybackRate();
+					goodTube_iframe_api.setPlaybackRate(Math.max(playbackRate - 0.25, 0.25));
+				}
+			}
 
-					if (playbackRate == .5) {
-						goodTube_iframe_api.setPlaybackRate(.25);
-					}
-					else if (playbackRate == .75) {
-						goodTube_iframe_api.setPlaybackRate(.5);
-					}
-					else if (playbackRate == 1) {
-						goodTube_iframe_api.setPlaybackRate(.75);
-					}
-					else if (playbackRate == 1.25) {
-						goodTube_iframe_api.setPlaybackRate(1);
-					}
-					else if (playbackRate == 1.5) {
-						goodTube_iframe_api.setPlaybackRate(1.25);
-					}
-					else if (playbackRate == 1.75) {
-						goodTube_iframe_api.setPlaybackRate(1.5);
-					}
-					else if (playbackRate == 2) {
-						goodTube_iframe_api.setPlaybackRate(1.75);
-					}
+			// Set speed back to normal
+			else if (event.shiftKey && keyPressed === 's') {
+				if (goodTube_iframe_api && typeof goodTube_iframe_api.getPlaybackRate === 'function' && typeof goodTube_iframe_api.setPlaybackRate === 'function') {	
+					goodTube_iframe_api.setPlaybackRate(1);
 				}
 			}
 
@@ -2249,17 +2214,17 @@
 				}
 
 				// Prev 5 seconds
-				if (keyPressed === 'arrowleft') {
+				if (keyPressed === 'arrowleft' || keyPressed === 'a') {
 					player.currentTime -= 5;
 				}
 
 				// Next 5 seconds
-				if (keyPressed === 'arrowright') {
+				if (keyPressed === 'arrowright' || keyPressed === 'd') {
 					player.currentTime += 5;
 				}
 
 				// Toggle play/pause
-				if (keyPressed === ' ' || keyPressed === 'k') {
+				if (keyPressed === ' ' || keyPressed === 'k' || keyPressed === 's') {
 					if (player.paused || player.ended) {
 						player.play();
 					}
