@@ -1793,7 +1793,7 @@
 		goodTube_iframe_syncMainPlayer();
 
 		// Restore playback speed, and update it if it changes
-		goodTube_iframe_playbackSpeed();
+		//goodTube_iframe_playbackSpeed();
 
 		// Run the iframe actions
 		goodTube_iframe_actions();
