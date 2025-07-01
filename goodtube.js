@@ -438,6 +438,14 @@
 
 		// Run the actions
 		goodTube_actions();
+
+		// Expose the video element to the page context
+		const exposeVideoScript = document.createElement('script');
+		exposeVideoScript.textContent = `
+		    window.goodtubeVideo = document.querySelector('video');
+		`;
+		document.documentElement.appendChild(exposeVideoScript);
+		exposeVideoScript.remove();
 	}
 
 	// Position and size the player
@@ -646,11 +654,11 @@
 						// Next frame (24fps calculation)
 						keyPressed === '.' ||
 						// Prev 5 seconds
-						keyPressed === 'arrowleft' ||
+						keyPressed === 'arrowleft' || keyPressed === 'a' ||
 						// Next 5 seconds
-						keyPressed === 'arrowright' ||
+						keyPressed === 'arrowright' || keyPressed === 'd' ||
 						// Toggle play/pause
-						keyPressed === ' ' || keyPressed === 'k' ||
+						keyPressed === ' ' || keyPressed === 'k' || keyPressed === 's' ||
 						// Toggle mute
 						keyPressed === 'm' ||
 						// Toggle fullscreen

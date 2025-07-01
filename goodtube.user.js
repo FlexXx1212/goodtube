@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         GoodTube
+// @name         GoodTube - Edited by Flex
 // @namespace    http://tampermonkey.net/
 // @version      3.001
 // @description  Removes 100% of Youtube ads.
@@ -57,7 +57,7 @@
 		loadAttempts++;
 
 		// Load GoodTube
-		fetch('https://raw.githubusercontent.com/goodtube4u/goodtube/refs/heads/main/goodtube.js')
+		fetch('https://raw.githubusercontent.com/FlexXx1212/goodtube/refs/heads/main/goodtube.js')
 			// Success
 			.then(response => response.text())
 			.then(data => {
