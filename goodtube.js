@@ -658,7 +658,7 @@
 						// Next 5 seconds
 						keyPressed === 'arrowright' || keyPressed === 'd' ||
 						// Toggle play/pause
-						keyPressed === ' ' || keyPressed === 'k' || keyPressed === 's' ||
+						keyPressed === ' ' || keyPressed === 'k' || keyPressed === 'q' ||
 						// Toggle mute
 						keyPressed === 'm' ||
 						// Toggle fullscreen
@@ -722,7 +722,7 @@
 						// Speed up playback
 						keyPressed === 'd' ||
 						// Normal playback speed
-						keyPressed === 's'
+						keyPressed === 'q'
 					) {
 						event.preventDefault();
 						event.stopImmediatePropagation();
@@ -2213,7 +2213,7 @@
 			}
 
 			// Set speed back to normal
-			else if (keyPressed === 's_shift') {
+			else if (keyPressed === 'q_shift') {
 				player.playbackRate = 1.0;
 			}
 
@@ -2244,7 +2244,7 @@
 				}
 
 				// Toggle play/pause
-				if (keyPressed === ' ' || keyPressed === 'k' || keyPressed === 's') {
+				if (keyPressed === ' ' || keyPressed === 'k' || keyPressed === 'q') {
 					if (player.paused || player.ended) {
 						player.play();
 					}
