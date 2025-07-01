@@ -2091,6 +2091,7 @@
 
 	// Receive a message from the parent window
 	function goodTube_iframe_receiveMessage(event) {
+		console.log(event.shiftKey);
 		// Make sure some data exists
 		if (typeof event.data !== 'string') {
 			return;
