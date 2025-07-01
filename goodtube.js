@@ -2195,13 +2195,12 @@
 		else if (event.data.indexOf('goodTube_shortcut_') !== -1) {
 			// Get the key pressed
 			let keyPressed = event.data.replace('goodTube_shortcut_', '');
-
+			alert('Key pressed: ' + keyPressed + ' | Shift: ' + event.shiftKey);
 			// Target the player
 			let player = document.querySelector('video');
 			if (!player) {
 				return;
 			}
-
 			// Speed up playback
 			else if (keyPressed === '>' || (event.shiftKey && keyPressed === 'd')) {
 				if (goodTube_iframe_api && typeof goodTube_iframe_api.getPlaybackRate === 'function' && typeof goodTube_iframe_api.setPlaybackRate === 'function') {
