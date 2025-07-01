@@ -2204,23 +2204,17 @@
 			}
 			// Speed up playback
 			else if (keyPressed === '>' || keyPressed === 'd_shift') {
-				if (goodTube_iframe_api && typeof goodTube_iframe_api.getPlaybackRate === 'function' && typeof goodTube_iframe_api.setPlaybackRate === 'function') {
-					player.playbackRate = player.playbackRate + 0.25;
-				}
+				player.playbackRate = player.playbackRate + 0.25;
 			}
 
 			// Slow down playback
 			else if (keyPressed === '<' || keyPressed === 'a_shift') {
-				if (goodTube_iframe_api && typeof goodTube_iframe_api.getPlaybackRate === 'function' && typeof goodTube_iframe_api.setPlaybackRate === 'function') {
-					player.playbackRate = Math.max(player.playbackRate - 0.25, 0.25);
-				}
+				player.playbackRate = Math.max(player.playbackRate - 0.25, 0.25);
 			}
 
 			// Set speed back to normal
 			else if (keyPressed === 's_shift') {
-				if (goodTube_iframe_api && typeof goodTube_iframe_api.getPlaybackRate === 'function' && typeof goodTube_iframe_api.setPlaybackRate === 'function') {	
-					player.playbackRate = 1.0;
-				}
+				player.playbackRate = 1.0;
 			}
 
 			// If we're not holding down the shift key
