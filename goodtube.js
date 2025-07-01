@@ -582,7 +582,6 @@
 	// Add keyboard shortcuts
 	function goodTube_shortcuts_init() {
 		document.addEventListener('keydown', function (event) {
-			console.log(event.shiftKey);
 			// Don't do anything if we're holding control
 			if (event.ctrlKey) {
 				return;
@@ -704,6 +703,34 @@
 
 						// Tell the iframe to toggle pip
 						goodTube_player.contentWindow.postMessage('goodTube_pip', '*');
+					}
+				}
+
+				// If we're not holding down the shift key
+				if (event.shiftKey) {
+					// If we're focused on the video element
+					if (focusedElement && typeof focusedElement.closest !== 'undefined' && focusedElement.closest('#goodTube_player')) {
+						// Theater mode (focus the body, this makes the default youtube shortcut work)
+						if (keyPressed === 't') {
+							document.querySelector('body').focus();
+						}
+					}
+
+					if (
+						// Speed up playback
+						keyPressed === 'a' ||
+						// Slow down playback
+						keyPressed === 'd'
+					) {
+						event.preventDefault();
+						event.stopImmediatePropagation();
+
+						// Pass the keyboard shortcut to the iframe
+						goodTube_player.contentWindow.postMessage('goodTube_shortcut_' + keyPressed, '*');
+
+						// Force mouse move to make sure fullscreen hides
+						var event = new Event('mousemove');
+						document.dispatchEvent(event);
 					}
 				}
 			}
